@@ -6,7 +6,6 @@
 (defn create-migration [project & args]
   "Create a new migration file."
   (eval-in-project
-    (update-in project [:dependencies]
-      conj ['drift drift-version/version])
+    project
     `(drift.generator/generate-migration-file-cmdline '~args)
     '(require 'drift.generator)))
